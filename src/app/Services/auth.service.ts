@@ -9,7 +9,7 @@ import { TokenService } from './token.service';
 })
 export class AuthService {
 
-  private endpoint = 'http://vsrvform01.dei.isep.ipp.pt/api/user';
+  private endpoint = 'https://shelfoftales.onrender.com/api/user';
   private userSubject = new BehaviorSubject<User | null>(null);
   public user!: Observable<User | null>;
   

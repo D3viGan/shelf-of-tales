@@ -1,0 +1,42 @@
+<div class="signin-container">
+    <h2>Sign In</h2>
+  
+    <!-- Loader Spinner -->
+    <div *ngIf="isVisible" class="loader">
+      <p>Loading...</p>
+    </div>
+  
+    <!-- Sign In Form -->
+    <form (ngSubmit)="signIn()">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input 
+          id="email" 
+          type="email" 
+          class="form-control" 
+          [(ngModel)]="email" 
+          name="email" 
+          required />
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input 
+          id="password" 
+          type="password" 
+          class="form-control" 
+          [(ngModel)]="password" 
+          name="password" 
+          required />
+      </div>
+  
+      <div *ngIf="message" class="error-message">
+        <p>{{ message }}</p>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+  </div>
+  
+  <!-- Add any additional CSS classes as necessary -->
+  
