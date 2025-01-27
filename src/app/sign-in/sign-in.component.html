@@ -1,12 +1,10 @@
 <div class="signin-container">
     <h2>Sign In</h2>
   
-    <!-- Loader Spinner -->
     <div *ngIf="isVisible" class="loader">
       <p>Loading...</p>
     </div>
   
-    <!-- Sign In Form -->
     <form (ngSubmit)="signIn()">
       <div class="form-group">
         <label for="email">Email:</label>
@@ -36,7 +34,9 @@
   
       <button type="submit" class="btn btn-primary">Sign In</button>
     </form>
-  </div>
   
-  <!-- Add any additional CSS classes as necessary -->
+    <div class="signup-link">
+      <p>Don't have an account? <a href='/signup'>Sign up</a></p>
+    </div>
+  </div>
   

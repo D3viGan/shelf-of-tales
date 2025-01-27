@@ -1,7 +1,6 @@
 <div class="signup-container">
   <h2>Sign Up</h2>
 
-  <!-- Form to register a new user -->
   <form (ngSubmit)="signUp()">
     <div class="form-group">
       <label for="name">Name:</label>
@@ -36,7 +35,6 @@
         required />
     </div>
 
-    <!-- Show message after submitting the form -->
     <div *ngIf="message" class="alert alert-info">
       <p>{{ message }}</p>
     </div>
@@ -44,4 +42,9 @@
     <button type="submit" class="btn btn-primary">Sign Up</button>
     <button type="button" (click)="resetNewUser()" class="btn btn-secondary">Reset</button>
   </form>
+
+  <div class="signin-link">
+    <p>Already have an account? <a href='/signin'>Log In</a></p>
+  </div>
 </div>
+
