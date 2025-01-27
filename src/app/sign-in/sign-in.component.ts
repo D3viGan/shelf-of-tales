@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../Services/auth.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { PageLoadService } from '../Services/page-load.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,8 +16,27 @@ export class SignInComponent {
 
   isVisible: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router, private loaderService: PageLoadService) {
+  constructor(private authService: AuthService, private router: Router, private loaderService: PageLoadService) { }
 
+  signIn() {
+    this.loaderService.showLoader();
+    this.authService.signIn(this.email!, this.password!).subscribe({
+      next: () => {
+        this.loaderService.hideLoader();
+        this.router.navigate(['private'])
+      },
+
+      error: (err) => (
+        this.loaderService.hideLoader(),
+        this.message = "Failed to Sign In."
+      )
+    });
   }
 
+  ngOnInIt(): void {
+    this.loaderService.isLoading().subscribe({
+      next: (x) => this.isVisible = x,
+      error: (err) => console.error(err)
+    });
+  }
 }
