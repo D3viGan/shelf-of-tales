@@ -12,7 +12,7 @@ export class TokenService {
     localStorage.removeItem(key);
   }
 
-  getToken(key:string) {
+  getToken(key:string): string {
     return localStorage.getItem(key) ?? '';
   }
 
