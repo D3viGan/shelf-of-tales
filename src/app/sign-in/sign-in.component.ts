@@ -30,7 +30,7 @@ export class SignInComponent {
 
       error: (err) => (
         this.loaderService.hideLoader(),
-        this.message = "Failed to Sign In."
+        this.message = "Failed to Sign in."
       )
     });
   }

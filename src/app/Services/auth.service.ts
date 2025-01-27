@@ -20,10 +20,10 @@ export class AuthService {
   }
 
   signIn(email: string, password: string){
-    return this.http.post<any>(`${this.endpoint}/signIn`, { email, password })
+    return this.http.post<any>(`${this.endpoint}/signin`, { email, password })
     .pipe(
       map(user=>this.tokenService.saveToken('user', JSON.stringify(user))),
-      catchError(this.handleError<User>("signIn"))
+      catchError(this.handleError<User>("signin"))
     );
   }
 
