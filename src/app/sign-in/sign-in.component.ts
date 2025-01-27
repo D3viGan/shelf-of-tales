@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { AuthService } from '../Services/auth.service';
 import { Router } from '@angular/router';
 import { PageLoadService } from '../Services/page-load.service';
+import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-sign-in',
-  imports: [],
+  imports: [FormsModule, NgIf],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
