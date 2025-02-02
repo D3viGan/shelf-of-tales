@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../Services/book.service';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-list-unavailable-books',
-  imports: [NgFor],
+  imports: [NgFor, NgIf],
   templateUrl: './list-unavailable-books.component.html',
   styleUrls: ['./list-unavailable-books.component.css']
 })

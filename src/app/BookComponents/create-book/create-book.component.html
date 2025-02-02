@@ -1,0 +1,25 @@
+<h2>Criar Novo Livro</h2>
+<form (submit)="createBook()">
+  <label>ISBN:</label>
+  <input [(ngModel)]="book.isbn" required /><br />
+
+  <label>Título:</label>
+  <input [(ngModel)]="book.title" required /><br />
+
+  <label>Autor(es) (separados por vírgula):</label>
+  <input [(ngModel)]="book.author" placeholder="Ex: Autor1, Autor2" required /><br />
+
+  <label>Categoria:</label>
+  <input [(ngModel)]="book.category" required /><br />
+
+  <label>URL da Capa:</label>
+  <input [(ngModel)]="book.cover" required /><br />
+
+  <label>Preço:</label>
+  <input type="number" [(ngModel)]="book.price" required /><br />
+
+  <label>Disponível:</label>
+  <input type="checkbox" [(ngModel)]="book.available" /><br />
+
+  <button type="submit">Criar Livro</button>
+</form>

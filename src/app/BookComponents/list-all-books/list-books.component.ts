@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../Services/book.service';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-list-books',
-  imports: [NgFor],
+  imports: [CommonModule],
   templateUrl: './list-books.component.html',
   styleUrl: './list-books.component.css'
 })
