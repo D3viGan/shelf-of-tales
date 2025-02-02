@@ -1,0 +1,27 @@
+<!-- list-book-by-isbn.component.html -->
+
+<div class="book-search">
+    <h2>Search for a Book by ISBN</h2>
+    
+    <!-- If a book is found, display its details -->
+    <div *ngIf="book">
+      <h3>Book Details</h3>
+      <div class="book-details">
+        <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+        <p><strong>Title:</strong> {{ book.title }}</p>
+        <p><strong>Author(s):</strong> {{ book.author.join(', ') }}</p>
+        <p><strong>Category:</strong> {{ book.category }}</p>
+        <p><strong>Price:</strong> ${{ book.price }}</p>
+        <p><strong>Availability:</strong> {{ book.available ? 'Available' : 'Unavailable' }}</p>
+        <div *ngIf="book.cover">
+          <img [src]="book.cover" alt="Book cover" class="book-cover">
+        </div>
+      </div>
+    </div>
+  
+    <!-- If no book is found or ISBN is invalid -->
+    <div *ngIf="!book && isbn">
+      <p>No book found with this ISBN.</p>
+    </div>
+  </div>
+  

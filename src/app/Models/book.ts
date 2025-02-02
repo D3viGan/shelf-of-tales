@@ -1,7 +1,7 @@
 export interface Book {
     isbn : string;
     title : string;
-    author : Array<string>;
+    author: string | string[];
     category : string;
     cover : string;
     price: number;
