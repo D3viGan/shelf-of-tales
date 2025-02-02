@@ -32,7 +32,7 @@ export class UpdateBookComponent implements OnInit {
         alert('Book availability successfully updated!');
       },
       (error) => {
-        alert('Erro ao atualizar a disponibilidade do livro.');
+        alert('Failed to update book availability');
       }
     );
   }
