@@ -4,9 +4,9 @@ import { SignInComponent } from "./sign-in/sign-in.component";
 import { ListBooksComponent } from "./BookComponents/list-all-books/list-books.component";
 import { ListAvailableBooksComponent } from "./BookComponents/list-available-books/list-available-books.component";
 import { ListUnavailableBooksComponent } from "./BookComponents/list-unavailable-books/list-unavailable-books.component";
-import { CreateBookComponent } from "./BookComponents/create-book/create-book.component";
 import { ListBookByISBNComponent } from "./BookComponents/list-book-by-isbn/list-book-by-isbn.component";
 import { UpdateBookComponent } from "./BookComponents/update-book-availability/update-book-availability.component";
+import { DeleteBookComponent } from "./BookComponents/delete-book/delete-book.component";
 
 export const routes: Routes = [
     { path: 'signup', component: SignUpComponent },
@@ -16,5 +16,5 @@ export const routes: Routes = [
     { path: 'book/unavailable', component: ListUnavailableBooksComponent },
     { path: 'book/:isbn', component: ListBookByISBNComponent },
     { path: 'book/:isbn/availability', component: UpdateBookComponent },
-    { path: 'createbook', component: CreateBookComponent } //não funciona
+    { path: 'delete', component: DeleteBookComponent },
 ];

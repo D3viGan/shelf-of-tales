@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateBookComponent } from './create-book.component';
+import { DeleteBookComponent } from './delete-book.component';
 
-describe('CreateBookComponent', () => {
-  let component: CreateBookComponent;
-  let fixture: ComponentFixture<CreateBookComponent>;
+describe('DeleteBookComponent', () => {
+  let component: DeleteBookComponent;
+  let fixture: ComponentFixture<DeleteBookComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateBookComponent]
+      imports: [DeleteBookComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CreateBookComponent);
+    fixture = TestBed.createComponent(DeleteBookComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
