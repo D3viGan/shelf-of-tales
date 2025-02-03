@@ -1,9 +1,9 @@
 export interface Book {
     isbn: string;
     title: string;
-    author: string;
+    author: string | string[];
     category: string;
     cover: string;
-    price: number | null;
+    price: number;
     available: boolean;
   }

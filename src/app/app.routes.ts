@@ -7,6 +7,7 @@ import { ListUnavailableBooksComponent } from "./BookComponents/list-unavailable
 import { ListBookByISBNComponent } from "./BookComponents/list-book-by-isbn/list-book-by-isbn.component";
 import { UpdateBookComponent } from "./BookComponents/update-book-availability/update-book-availability.component";
 import { DeleteBookComponent } from "./BookComponents/delete-book/delete-book.component";
+import { CreateBookComponent } from "./BookComponents/create-book/create-book.component";
 
 export const routes: Routes = [
     { path: 'signup', component: SignUpComponent },
@@ -16,5 +17,6 @@ export const routes: Routes = [
     { path: 'book/unavailable', component: ListUnavailableBooksComponent },
     { path: 'book/:isbn', component: ListBookByISBNComponent },
     { path: 'book/:isbn/availability', component: UpdateBookComponent },
+    { path: 'createbook', component: CreateBookComponent },
     { path: 'delete', component: DeleteBookComponent },
 ];

@@ -1,0 +1,43 @@
+<form #form="ngForm" (ngSubmit)="createBook(form)">
+    <div class="form-group">
+      <label for="isbn">ISBN:</label>
+      <input type="text" id="isbn" class="form-control" [(ngModel)]="book['isbn']" name="isbn" required />
+    </div>
+  
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" class="form-control" [(ngModel)]="book['title']" name="title" required />
+    </div>
+  
+    <div class="form-group">
+      <label for="author">Author:</label>
+      <input type="text" id="author" class="form-control" [(ngModel)]="book['author']" name="author" required />
+    </div>
+  
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <input type="text" id="category" class="form-control" [(ngModel)]="book['category']" name="category" required />
+    </div>
+  
+    <div class="form-group">
+      <label for="cover">Cover:</label>
+      <input type="text" id="cover" class="form-control" [(ngModel)]="book['cover']" name="cover" />
+    </div>
+  
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input type="number" id="price" class="form-control" [(ngModel)]="book['price']" name="price" required />
+    </div>
+  
+    <div class="form-group">
+      <label for="available">Available:</label>
+      <input type="checkbox" id="available" [(ngModel)]="book['available']" name="available" />
+    </div>
+  
+    <!-- Success/Error Messages -->
+    <p *ngIf="successMessage" class="text-success">{{ successMessage }}</p>
+    <p *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</p>
+  
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Create Book</button>
+  </form>  
