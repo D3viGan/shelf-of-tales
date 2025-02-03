@@ -25,7 +25,6 @@ export class SignInComponent {
     this.authService.signIn(this.email!, this.password!).subscribe({
       next: () => {
         this.loaderService.hideLoader();
-        this.router.navigate(['private'])
       },
 
       error: (err) => (

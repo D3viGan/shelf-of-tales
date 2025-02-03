@@ -6,6 +6,7 @@ import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-create-book',
+  standalone: true,
   imports: [FormsModule, NgIf],
   templateUrl: './create-book.component.html',
   styleUrls: ['./create-book.component.css']
@@ -30,6 +31,8 @@ export class CreateBookComponent {
     if (form.invalid) {
       return;
     }
+
+    console.log(this.book);
 
     this.bookService.createBook(this.book).subscribe(
       (response) => {
