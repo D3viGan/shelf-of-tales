@@ -25,7 +25,6 @@ export class CreateBookComponent {
 
   createBook(form: any): void {
     if (form.valid) {
-      // Perform book creation logic (e.g., call an API)
       this.successMessage = 'Book created successfully!';
       this.errorMessage = '';
     } else {
