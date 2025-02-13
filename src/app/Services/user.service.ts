@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private readonly theEndPoint = "http://shelfoftales.onrender.com/api/user"
+  private readonly theEndPoint = "https://shelfoftales.onrender.com/api/user"
 
   constructor(private myWebApiClient: HttpClient) { 
   }
