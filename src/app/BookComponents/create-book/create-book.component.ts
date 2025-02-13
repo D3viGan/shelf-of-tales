@@ -17,10 +17,6 @@ export class CreateBookComponent {
   bookForm: FormGroup;
   isSubmitting = false;
   errorMessage = '';
-  
-  
-  
-
 
   constructor(
     private fb: FormBuilder,
@@ -47,7 +43,6 @@ export class CreateBookComponent {
   addAuthor(): void {
     this.authors.push(this.fb.control('', Validators.required)); // Garante que o campo seja obrigatório
   }
-  
 
   removeAuthor(index: number): void {
     if (this.authors.length > 1) {
@@ -72,7 +67,7 @@ export class CreateBookComponent {
       author: newBook.author.filter((author: string) => author.trim() !== ''), // Filtra autores não vazios
     };
   
-    console.log('Novo livro formatado:', formattedBook); // 👀 Verifique o payload antes de enviar
+    console.log('Novo livro formatado:', formattedBook); // Verifique o payload antes de enviar
   
     this.bookService.createBook(formattedBook).subscribe({
       next: () => {
@@ -86,8 +81,4 @@ export class CreateBookComponent {
       },
     });
   }
-
-
-  
-  
 }

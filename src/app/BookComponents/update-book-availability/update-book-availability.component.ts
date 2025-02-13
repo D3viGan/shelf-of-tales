@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './update-book-availability.component.html',
   styleUrls: ['./update-book-availability.component.css']
 })
-export class UpdateBookComponent implements OnInit {
+export class UpdateBookAvailabilityComponent implements OnInit {
   isbn: string = '';
   available: boolean = false;
   bookExists: boolean = true; // Flag to track if the book exists
