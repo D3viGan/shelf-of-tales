@@ -1,82 +1,69 @@
-<div class="create-book">
-  <h1>Criar Novo Livro</h1>
-
-  <!-- Mensagem de erro -->
-  <div *ngIf="errorMessage" class="error-message">
-    {{ errorMessage }}
-  </div>
-
-  <!-- Formulário para criar o livro -->
-  <form [formGroup]="bookForm" (ngSubmit)="createBook()">
-    
-    <!-- ISBN -->
+<div class="create-book-container">
+  <h2>Add a New Book</h2>
+  <form (ngSubmit)="createBook()">
     <div>
       <label for="isbn">ISBN:</label>
-      <input id="isbn" formControlName="isbn" type="text" required />
-      <div *ngIf="bookForm.get('isbn')?.invalid && bookForm.get('isbn')?.touched">
-        O ISBN deve ter pelo menos 10 caracteres.
-      </div>
+      <input type="text"
+             id="isbn"
+             [(ngModel)]="newBook.isbn"
+             name="isbn"
+             required />
     </div>
-
-    <!-- Título -->
     <div>
-      <label for="title">Título:</label>
-      <input id="title" formControlName="title" type="text" required />
-      <div *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched">
-        O título é obrigatório.
-      </div>
+      <label for="title">Title:</label>
+      <input type="text"
+             id="title"
+             [(ngModel)]="newBook.title"
+             name="title"
+             required />
     </div>
-
-  <!-- Autores -->
-  <div formArrayName="author">
-      <label>Autores:</label>
-      <div *ngFor="let author of authors.controls; let i = index">
-        <!-- Vincula o formControlName ao índice -->
-        <input [formControlName]="i" type="text" placeholder="Nome do autor" />
-        <button type="button" (click)="removeAuthor(i)" *ngIf="authors.length > 1">Remover</button>
-        <div *ngIf="authors.at(i)?.invalid && authors.at(i)?.touched">
-          O nome do autor não pode estar vazio.
-        </div>
-      </div>
-      <button type="button" (click)="addAuthor()">Adicionar Autor</button>
-    </div>
-    
-
-    <!-- Categoria -->
     <div>
-      <label for="category">Categoria:</label>
-      <input id="category" formControlName="category" type="text" required />
-      <div *ngIf="bookForm.get('category')?.invalid && bookForm.get('category')?.touched">
-        A categoria é obrigatória.
+      <label for="author">Authors:</label>
+      <div class="author-input-group">
+        <input type="text"
+               [(ngModel)]="newAuthor"
+               name="newAuthor"
+               placeholder="Add an author" />
+        <button type="button" (click)="addAuthor()">Add Author</button>
       </div>
+      <ul>
+        <li *ngFor="let author of newBook.author; let i = index">
+          {{ author }}
+          <button type="button" (click)="removeAuthor(i)">Remove</button>
+        </li>
+      </ul>
     </div>
-
-    <!-- Capa (URL) -->
     <div>
-      <label for="cover">URL da Capa:</label>
-      <input id="cover" formControlName="cover" type="text" />
+      <label for="category">Category:</label>
+      <input type="text"
+             id="category"
+             [(ngModel)]="newBook.category"
+             name="category"
+             required />
     </div>
-
-    <!-- Preço -->
     <div>
-      <label for="price">Preço:</label>
-      <input id="price" formControlName="price" type="number" required />
-      <div *ngIf="bookForm.get('price')?.invalid && bookForm.get('price')?.touched">
-        O preço deve ser um número positivo.
-      </div>
+      <label for="cover">Cover (URL):</label>
+      <input type="text"
+             id="cover"
+             [(ngModel)]="newBook.cover"
+             name="cover" />
     </div>
-
-    <!-- Disponibilidade -->
+    <div>
+      <label for="price">Price:</label>
+      <input type="number"
+             id="price"
+             [(ngModel)]="newBook.price"
+             name="price"
+             required
+             step="0.01" />
+    </div>
     <div>
       <label for="available">Disponível:</label>
-      <input id="available" formControlName="available" type="checkbox" />
+      <input type="checkbox"
+             id="available"
+             [(ngModel)]="newBook.available"
+             name="available" />
     </div>
-
-    <!-- Botão de envio -->
-    <div>
-      <button type="submit" [disabled]="isSubmitting || bookForm.invalid">
-        {{ isSubmitting ? 'Enviando...' : 'Criar Livro' }}
-      </button>
-    </div>
-  </form>
+    <button type="submit">Criar Livro</button>
+  </form>
 </div>

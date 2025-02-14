@@ -1,100 +1,59 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
-import { BookService } from '../../Services/book.service';
 import { Router } from '@angular/router';
+import { BookService } from '../../Services/book.service';
 import { Book } from '../../Models/book';
-import { NgIf, CommonModule } from '@angular/common';
-import { AuthService } from '../../Services/auth.service';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-create-book',
   standalone: true,
-  imports: [NgIf, ReactiveFormsModule, CommonModule],
   templateUrl: './create-book.component.html',
   styleUrls: ['./create-book.component.css'],
+  imports: [FormsModule,NgFor,CommonModule],
 })
+
 export class CreateBookComponent {
-  bookForm: FormGroup;
-  isSubmitting = false;
-  errorMessage = '';
-  
-  
-  
+  newBook: Book = {
+    isbn: '',
+    title: '',
+    author: [], // Initialize as an empty array
+    category: '',
+    cover: '',
+    price: 0,
+    available: true
+  };
 
+  newAuthor: string = ''; // For inputting new authors
 
-  constructor(
-    private fb: FormBuilder,
-    private bookService: BookService,
-    private router: Router,
-    private authService: AuthService
-  ) {
-    this.bookForm = this.fb.group({
-      isbn: ['', [Validators.required, Validators.minLength(10)]],
-      title: ['', Validators.required],
-      author: this.fb.array([this.fb.control('')], Validators.required),
-      category: ['', Validators.required],
-      cover: [''], 
-      price: [0, [Validators.required, Validators.min(0)]],
-      available: [true],
-    });
-  }
-  
-  // Example usage of authService to check if the user is authenticated
-  ngOnInit(): void {
-    if (!this.authService.hasToken()) {
-      this.router.navigate(['/login']); // Redirect to login if not authenticated
-    }
-  }
+  constructor(private bookService: BookService, private router: Router) { }
 
-  // Métodos para manipular a lista de autores
-  get authors(): FormArray {
-    return this.bookForm.get('author') as FormArray;
-  }
-
+  // Method to add a new author
   addAuthor(): void {
-    this.authors.push(this.fb.control('', Validators.required)); // Garante que o campo seja obrigatório
+    if (this.newAuthor.trim() !== '') {
+      this.newBook.author.push(this.newAuthor.trim());
+      this.newAuthor = ''; // Clear the input field
+    } else {
+      alert('Author name cannot be empty!');
+    }
   }
-  
 
+  // Method to remove an author by index
   removeAuthor(index: number): void {
-    if (this.authors.length > 1) {
-      this.authors.removeAt(index);
-    }
+    this.newBook.author.splice(index, 1);
   }
 
-  // Método para enviar o formulário
+  // Method to create the book
   createBook(): void {
-    if (this.bookForm.invalid) {
-      return;
-    }
-  
-    this.isSubmitting = true;
-  
-    // Obtém os dados do formulário
-    const newBook: Book = this.bookForm.value;
-  
-    // Remove autores vazios do array
-    const formattedBook = {
-      ...newBook,
-      author: newBook.author.filter((author: string) => author.trim() !== ''), // Filtra autores não vazios
-    };
-  
-    console.log('Novo livro formatado:', formattedBook); // 👀 Verifique o payload antes de enviar
-  
-    this.bookService.createBook(formattedBook).subscribe({
+    this.bookService.createBook(this.newBook).subscribe({
       next: () => {
-        this.isSubmitting = false;
-        this.router.navigate(['/book']); // Redireciona após sucesso
+        alert('Livro criado com sucesso!');
+        this.router.navigate(['/book']); // Redirect to the book list
       },
       error: (err) => {
-        console.error('Erro ao criar livro:', err);
-        this.errorMessage = 'Erro ao criar livro. Verifique os campos e tente novamente.';
-        this.isSubmitting = false;
-      },
-    });
-  }
-
-
-  
-  
+        console.error('Erro ao criar o livro:', err);
+        alert('Erro ao criar o livro. Verifique os dados e tente novamente.');
+      }
+    });
+  }
 }
