@@ -14,9 +14,9 @@ import { BookService } from '../../Services/book.service';
 export class UpdateBookComponent implements OnInit {
   bookForm!: FormGroup;
   isbn!: string;
+  category!: string;
   message = '';
-  isSubmitting = false;  // <-- Add this line to define isSubmitting
-
+  isSubmitting = false;
 
   constructor(
     private fb: FormBuilder,
@@ -28,24 +28,31 @@ export class UpdateBookComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => this.isbn = params['isbn']);
 
-    // Create the form
+    // Create the form without the category field
     this.bookForm = this.fb.group({
       title: ['', Validators.required],
       author: ['', Validators.required], // Multiple authors separated by commas
-      category: ['', Validators.required],
       price: [0, [Validators.required, Validators.min(0)]],
-      cover: ['', Validators.required]
+      cover: ['', Validators.required],
+      category: ['', Validators.required], // Category field is present but disabled
+      isbn: ['', Validators.required] // ISBN field is present but disabled
     });
 
     // Load book data based on ISBN
     this.bookService.getBookByIsbn(this.isbn).subscribe((book) => {
+      this.category = book.category;
       this.bookForm.setValue({
         title: book.title,
         author: book.author.join(', '),
-        category: book.category,
         price: book.price,
-        cover: book.cover
+        cover: book.cover,
+        category: book.category, // Set category as value
+        isbn: book.isbn // Set isbn as value
       });
+
+      // Disable the category and isbn controls
+      this.bookForm.get('category')?.disable();
+      this.bookForm.get('isbn')?.disable();
     });
   }
 

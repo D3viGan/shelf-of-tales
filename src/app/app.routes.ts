@@ -20,5 +20,5 @@ export const routes: Routes = [
     { path: 'book/:isbn/availability', component: UpdateBookAvailabilityComponent },
     { path: 'createbook', component: CreateBookComponent },
     { path: 'delete', component: DeleteBookComponent },
-    { path: 'book/update', component: UpdateBookComponent },
+    { path: 'update/:isbn', component: UpdateBookComponent },
 ];

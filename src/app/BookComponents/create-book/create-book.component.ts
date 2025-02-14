@@ -3,13 +3,13 @@ import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule } fr
 import { BookService } from '../../Services/book.service';
 import { Router } from '@angular/router';
 import { Book } from '../../Models/book';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, CommonModule } from '@angular/common';
 import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-create-book',
   standalone: true,
-  imports: [NgIf, NgFor, ReactiveFormsModule],
+  imports: [NgIf, ReactiveFormsModule, CommonModule],
   templateUrl: './create-book.component.html',
   styleUrls: ['./create-book.component.css'],
 })
@@ -17,22 +17,33 @@ export class CreateBookComponent {
   bookForm: FormGroup;
   isSubmitting = false;
   errorMessage = '';
+  
+  
+  
+
 
   constructor(
     private fb: FormBuilder,
     private bookService: BookService,
     private router: Router,
-    private authService : AuthService
+    private authService: AuthService
   ) {
     this.bookForm = this.fb.group({
       isbn: ['', [Validators.required, Validators.minLength(10)]],
       title: ['', Validators.required],
-      author: this.fb.array([this.fb.control('')], Validators.required), // Lista de autores
+      author: this.fb.array([this.fb.control('')], Validators.required),
       category: ['', Validators.required],
-      cover: [''], // Opcional
-      price: [0, [Validators.required, Validators.min(0)]], // O preço não pode ser negativo
-      available: [true], // Padrão: disponível
+      cover: [''], 
+      price: [0, [Validators.required, Validators.min(0)]],
+      available: [true],
     });
+  }
+  
+  // Example usage of authService to check if the user is authenticated
+  ngOnInit(): void {
+    if (!this.authService.hasToken()) {
+      this.router.navigate(['/login']); // Redirect to login if not authenticated
+    }
   }
 
   // Métodos para manipular a lista de autores
@@ -43,6 +54,7 @@ export class CreateBookComponent {
   addAuthor(): void {
     this.authors.push(this.fb.control('', Validators.required)); // Garante que o campo seja obrigatório
   }
+  
 
   removeAuthor(index: number): void {
     if (this.authors.length > 1) {
@@ -67,12 +79,12 @@ export class CreateBookComponent {
       author: newBook.author.filter((author: string) => author.trim() !== ''), // Filtra autores não vazios
     };
   
-    console.log('Novo livro formatado:', formattedBook); // Verifique o payload antes de enviar
+    console.log('Novo livro formatado:', formattedBook); // 👀 Verifique o payload antes de enviar
   
     this.bookService.createBook(formattedBook).subscribe({
       next: () => {
         this.isSubmitting = false;
-        this.router.navigate(['/book/available']); // Redireciona após sucesso
+        this.router.navigate(['/book']); // Redireciona após sucesso
       },
       error: (err) => {
         console.error('Erro ao criar livro:', err);
@@ -81,4 +93,8 @@ export class CreateBookComponent {
       },
     });
   }
+
+
+  
+  
 }
