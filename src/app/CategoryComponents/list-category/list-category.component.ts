@@ -1,34 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../../Models/category';
-import { CategoryService } from '../../Services/category.service';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterModule } from '@angular/router';
+import { AuthService } from '../../Services/auth.service';
+import { CategoryService } from '../../Services/category.service';
+import { Category } from '../../Models/category';
 
 @Component({
   selector: 'app-list-category',
-  imports: [CommonModule, RouterModule],
+  standalone: true,
+  imports: [RouterModule, CommonModule],
   templateUrl: './list-category.component.html',
-  styleUrl: './list-category.component.css'
+  styleUrls: ['./list-category.component.css']
 })
-export class ListCategoryComponent implements OnInit{
+export class ListCategoryComponent implements OnInit {
+  userRole: string | null = null;
   categories: Category[] = [];
-  loading: boolean = true;
-  errorMessage: string = '';
+  loading = false;
+  errorMessage: string | null = null;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private authService: AuthService, private categoryService: CategoryService) {}
 
   ngOnInit(): void {
+    // Get user role from AuthService
+    this.authService.user.subscribe(user => {
+      this.userRole = user?.role || null;
+    });
+
+    // Fetch categories
     this.loadCategories();
   }
 
+  isManager(): boolean {
+    return this.userRole === 'manager';
+  }
+
   loadCategories(): void {
+    this.loading = true;
     this.categoryService.getAllCategories().subscribe({
       next: (data) => {
         this.categories = data;
         this.loading = false;
       },
-      error: (err) => {
-        this.errorMessage = 'Failed to load categories';
+      error: (error) => {
+        console.error('Error fetching categories:', error);
+        this.errorMessage = 'Failed to load categories. Please try again later.';
         this.loading = false;
       }
     });
