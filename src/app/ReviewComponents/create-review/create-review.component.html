@@ -1,1 +1,25 @@
-<p>create-review works!</p>
+<div class="container">
+    <h2>Submit Review for Book (ISBN: {{ isbn }})</h2>
+  
+    <!-- Success or error messages -->
+    <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  
+    <!-- Review Form -->
+    <form (ngSubmit)="submitReview()">
+      <div class="form-group">
+        <label for="reviewText">Your Review:</label>
+        <textarea
+          id="reviewText"
+          [(ngModel)]="reviewText"
+          name="review"
+          rows="5"
+          class="form-control"
+          placeholder="Write your review here"
+          required
+        ></textarea>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Submit Review</button>
+    </form>
+  </div>  
