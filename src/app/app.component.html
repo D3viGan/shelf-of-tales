@@ -1,11 +1,26 @@
 <nav class="nav-bar">
+  <!-- Display the user role if logged in -->
+  <span *ngIf="isLoggedIn()" class="user-role">{{ userSession?.role | titlecase }}</span>
+
   <!-- Show login/signup only if the user is NOT logged in -->
   <button *ngIf="!isLoggedIn()" class="btn" routerLink="/signin">Log In</button>
   <button *ngIf="!isLoggedIn()" class="btn" routerLink="/signup">Create User</button>
 
-  <!-- Show navigation options based on user roles -->
-  <button *ngIf="isManager()" class="btn" routerLink="/manage-books">Manage Books</button>
-  <button *ngIf="isClient()" class="btn" routerLink="/browse-books">Browse Books</button>
+  <!-- Show manager-specific navigation -->
+  <ng-container *ngIf="isManager()">
+    <button class="btn" routerLink="/book/unavailable">Unavailable Books</button>
+    <button class="btn" routerLink="/book/create">Create Book</button>
+    <button class="btn" routerLink="category/create">Create Category</button>
+  </ng-container>
+
+  <!-- Show client-specific navigation -->
+  <ng-container *ngIf="isClient()">
+    <button class="btn" routerLink="/book">All Books</button>
+  </ng-container>
+
+  <!-- Show categories (Available to Everyone) -->
+  <button class="btn btn-categories" routerLink="/category">Categories</button>
+  <button class="btn" routerLink="/book/available">Books Available</button>
 
   <!-- Show logout button only when the user is logged in -->
   <button *ngIf="isLoggedIn()" class="btn btn-logout" (click)="logout()">Logout</button>
