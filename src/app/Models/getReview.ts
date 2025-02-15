@@ -1,6 +1,6 @@
 export interface GetReview {
     isbn: string;
-    reviewerEmail: string;
+    reviewer: string;
     date: Date;
     review: string;
 }
