@@ -1,28 +1,28 @@
-<div class="container">
-    <h2>Category List</h2>
-  
-    <!-- Show loading message -->
-    <div *ngIf="loading" class="loading">Loading categories...</div>
-  
-    <!-- Show error message if API call fails -->
-    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-  
-    <!-- Display categories in a table -->
-    <table *ngIf="categories.length > 0" class="category-table">
+<div class="category-list-container">
+  <h2>Category List</h2>
+
+  <div class="button-container">
+      <button class="btn btn-create" routerLink="category/create">Create New Category</button>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading categories...</div>
+
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <table *ngIf="categories.length > 0" class="category-table">
       <thead>
-        <tr>
-          <th>#</th>
-          <th>Category Name</th>
-        </tr>
+          <tr>
+              <th>#</th>
+              <th>Category Name</th>
+          </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let category of categories; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ category.name }}</td>
-        </tr>
+          <tr *ngFor="let category of categories; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ category.name }}</td>
+          </tr>
       </tbody>
-    </table>
-  
-    <!-- Message when no categories are found -->
-    <p *ngIf="!loading && categories.length === 0">No categories found.</p>
-  </div>
+  </table>
+
+  <p *ngIf="!loading && categories.length === 0">No categories found.</p>
+</div>
