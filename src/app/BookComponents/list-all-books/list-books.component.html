@@ -1,28 +1,13 @@
-<h2>List of All Books</h2>
-
-<table border="1">
-  <thead>
-    <tr>
-      <th>ISBN</th>
-      <th>Title</th>
-      <th>Author(s)</th>
-      <th>Category</th>
-      <th>Cover</th>
-      <th>Price</th>
-      <th>Available</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let book of books">
-      <td>{{ book.isbn }}</td>
-      <td>{{ book.title }}</td>
-      <td>{{ book.author.join(', ') }}</td> <!-- Displays authors separated by commas -->
-      <td>{{ book.category }}</td>
-      <td>
-        <img [src]="book.cover" alt="Book Cover" width="50" height="75" />
-      </td>
-      <td>$ {{ book.price | number:'1.2-2' }}</td> <!-- Formats price with 2 decimal places -->
-      <td>{{ book.available ? 'Yes' : 'No' }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="book-container" *ngFor="let book of books">
+  <a [routerLink]="['/book', book.isbn]">
+      <img [src]="book.cover" alt="Book Cover" class="book-cover">
+      <div class="book-details">
+          <h3 class="book-title">{{ book.title }}</h3>
+          <p class="book-author"><strong>Author(s):</strong> {{ book.author.join(', ') }}</p>
+          <p class="book-isbn"><strong>ISBN:</strong> {{ book.isbn }}</p>
+          <p class="book-category"><strong>Category:</strong> {{ book.category }}</p>
+          <p class="book-price"><strong>Price:</strong> ${{ book.price }}</p>
+          <p class="book-availability"><strong>Available:</strong> {{ book.available ? 'Yes' : 'No' }}</p>
+      </div>
+  </a>
+</div>
