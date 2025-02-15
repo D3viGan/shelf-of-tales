@@ -9,6 +9,7 @@ import { UpdateBookAvailabilityComponent } from "./BookComponents/update-book-av
 import { DeleteBookComponent } from "./BookComponents/delete-book/delete-book.component";
 import { CreateBookComponent } from "./BookComponents/create-book/create-book.component";
 import { UpdateBookComponent } from "./BookComponents/update-book/update-book.component";
+import { ListCategoryComponent } from "./CategoryComponents/list-category/list-category.component";
 
 export const routes: Routes = [
     { path: 'signup', component: SignUpComponent },
@@ -21,4 +22,5 @@ export const routes: Routes = [
     { path: 'createbook', component: CreateBookComponent },
     { path: 'delete', component: DeleteBookComponent },
     { path: 'update/:isbn', component: UpdateBookComponent },
+    { path: 'category', component: ListCategoryComponent },
 ];
