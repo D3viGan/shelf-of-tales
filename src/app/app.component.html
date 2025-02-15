@@ -1,30 +1,36 @@
-<nav class="nav-bar">
+<div class="side-menu">
   <!-- Display the user role if logged in -->
-  <span *ngIf="isLoggedIn()" class="user-role">{{ userSession?.role | titlecase }}</span>
+  <div *ngIf="isLoggedIn()" class="menu-header">
+    {{ userSession?.role | titlecase }}
+  </div>
 
   <!-- Show login/signup only if the user is NOT logged in -->
-  <button *ngIf="!isLoggedIn()" class="btn" routerLink="/signin">Sign In</button>
-  <button *ngIf="!isLoggedIn()" class="btn" routerLink="/signup">Sign Up</button>
+  <ng-container *ngIf="!isLoggedIn()">
+    <a routerLink="/signin" class="menu-item">Sign In</a>
+    <a routerLink="/signup" class="menu-item">Sign Up</a>
+  </ng-container>
 
   <!-- Show manager-specific navigation -->
   <ng-container *ngIf="isManager()">
-    <button class="btn" routerLink="/book/unavailable">Unavailable Books</button>
-    <button class="btn" routerLink="/book/create">Create New Book</button>
-    <button class="btn" routerLink="category/create">Create New Category</button>
+    <a routerLink="/book/unavailable" class="menu-item">Unavailable Books</a>
+    <a routerLink="/book/create" class="menu-item">Create New Book</a>
+    <a routerLink="/category/create" class="menu-item">Create New Category</a>
   </ng-container>
 
   <!-- Show client-specific navigation -->
   <ng-container *ngIf="isClient()">
-    <button class="btn" routerLink="/book">All Books</button>
+    <a routerLink="/book" class="menu-item">All Books</a>
   </ng-container>
 
   <!-- Show categories (Available to Everyone) -->
-  <button class="btn" routerLink="/category">Categories</button>
-  <button class="btn" routerLink="/book/available">Books Available</button>
+  <a routerLink="/category" class="menu-item">Categories</a>
+  <a routerLink="/book/available" class="menu-item">Books Available</a>
 
-  <!-- Show logout button only when the user is logged in -->
-  <button *ngIf="isLoggedIn()" class="btn btn-logout" (click)="logout()">Logout</button>
-</nav>
+  <!-- Interactive Logout Button -->
+  <button *ngIf="isLoggedIn()" (click)="confirmLogout()" class="menu-item logout">Logout</button>
+</div>
 
-<hr>
-<router-outlet></router-outlet>
+<!-- Main content area (prevents sidebar overlap) -->
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>

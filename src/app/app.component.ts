@@ -60,4 +60,10 @@ export class AppComponent implements OnInit {
       console.log('Executing function available to both clients and managers');
     }
   }
+
+  confirmLogout(): void {
+    if (confirm('Are you sure you want to log out?')) {
+      this.logout();
+    }
+  }
 }
