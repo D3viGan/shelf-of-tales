@@ -1,21 +1,29 @@
 <div class="book-search">
-    <div *ngIf="book">
-      <h3>Book Details</h3>
-      <div class="book-details">
-        <p><strong>ISBN:</strong> {{ book.isbn }}</p>
-        <p><strong>Title:</strong> {{ book.title }}</p>
-        <p><strong>Author(s):</strong> {{ book.author.join(', ') }}</p>
-        <p><strong>Category:</strong> {{ book.category }}</p>
-        <p><strong>Price:</strong> ${{ book.price }}</p>
-        <p><strong>Availability:</strong> {{ book.available ? 'Available' : 'Unavailable' }}</p>
-        <div *ngIf="book.cover">
-          <img [src]="book.cover" alt="Book cover" class="book-cover">
-        </div>
+  <div *ngIf="book">
+    <h3>Book Details</h3>
+    <div class="book-details">
+      <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+      <p><strong>Title:</strong> {{ book.title }}</p>
+      <p><strong>Author(s):</strong> {{ book.author.join(', ') }}</p>
+      <p><strong>Category:</strong> {{ book.category }}</p>
+      <p><strong>Price:</strong> ${{ book.price }}</p>
+      <p><strong>Availability:</strong> {{ book.available ? 'Available' : 'Unavailable' }}</p>
+      <div *ngIf="book.cover">
+        <img [src]="book.cover" alt="Book cover" class="book-cover">
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="book-actions">
+        <button *ngIf="isManager()" (click)="updateBook()">Update Book</button>
+        <button *ngIf="isManager()" (click)="removeBook()">Remove Book</button>
+        <button *ngIf="isManager()" (click)="toggleAvailability()">
+          {{ book.available ? 'Mark as Unavailable' : 'Mark as Available' }}
+        </button>
       </div>
     </div>
-  
-    <div *ngIf="!book && isbn">
-      <p>No book found with this ISBN.</p>
-    </div>
   </div>
-  
+
+  <div *ngIf="!book && isbn">
+    <p>No book found with this ISBN.</p>
+  </div>
+</div>
