@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../Services/book.service';
 import { NgFor, NgIf } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-list-available-books',
-  imports: [NgFor, NgIf],
+  imports: [NgFor, RouterLink],
   templateUrl: './list-available-books.component.html',
   styleUrls: ['./list-available-books.component.css']
 })
