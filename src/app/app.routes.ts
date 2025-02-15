@@ -4,7 +4,6 @@ import { SignInComponent } from "./sign-in/sign-in.component";
 import { ListBooksComponent } from "./BookComponents/list-all-books/list-books.component";
 import { ListAvailableBooksComponent } from "./BookComponents/list-available-books/list-available-books.component";
 import { ListUnavailableBooksComponent } from "./BookComponents/list-unavailable-books/list-unavailable-books.component";
-import { ListBookByISBNComponent } from "./BookComponents/list-book-by-isbn/list-book-by-isbn.component";
 import { UpdateBookAvailabilityComponent } from "./BookComponents/update-book-availability/update-book-availability.component";
 import { DeleteBookComponent } from "./BookComponents/delete-book/delete-book.component";
 import { CreateBookComponent } from "./BookComponents/create-book/create-book.component";
@@ -13,6 +12,7 @@ import { ListCategoryComponent } from "./CategoryComponents/list-category/list-c
 import { CreateCategoryComponent } from "./CategoryComponents/create-category/create-category.component";
 import { ListReviewComponent } from "./ReviewComponents/list-review/list-review.component";
 import { CreateReviewComponent } from "./ReviewComponents/create-review/create-review.component";
+import { ListBookByISBNComponent } from "./BookComponents/list-book-by-isbn/list-book-by-isbn.component";
 
 export const routes: Routes = [
     { path: 'signup', component: SignUpComponent },
@@ -23,8 +23,8 @@ export const routes: Routes = [
     { path: 'book/:isbn/availability', component: UpdateBookAvailabilityComponent },
     { path: 'book/create', component: CreateBookComponent },
     { path: 'book/:isbn', component: ListBookByISBNComponent },
-    { path: 'delete', component: DeleteBookComponent },
-    { path: 'update/:isbn', component: UpdateBookComponent },
+    { path: 'book/delete', component: DeleteBookComponent },
+    { path: 'book/update/:isbn', component: UpdateBookComponent },
     { path: 'category', component: ListCategoryComponent },
     { path: 'category/create', component: CreateCategoryComponent },
     { path: 'review/:isbn', component: ListReviewComponent},

@@ -4,16 +4,17 @@ import { Category } from '../../Models/category';
 import { CategoryService } from '../../Services/category.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-create-category',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './create-category.component.html',
-  styleUrl: './create-category.component.css'
+  styleUrls: ['./create-category.component.css']
 })
 export class CreateCategoryComponent {
-  newCategory: Category = { name: '' }; // Initialize empty category
+  newCategory: Category = { name: '' };
   successMessage: string | null = null;
   errorMessage: string | null = null;
 
@@ -22,6 +23,7 @@ export class CreateCategoryComponent {
   createCategory(): void {
     if (!this.newCategory.name.trim()) {
       this.errorMessage = 'Category name cannot be empty!';
+      this.successMessage = null;
       return;
     }
 
@@ -30,7 +32,7 @@ export class CreateCategoryComponent {
         this.successMessage = 'Category created successfully!';
         this.errorMessage = null;
         setTimeout(() => {
-          this.router.navigate(['/category']); // Redirect to category list
+          this.navigateToCategories();
         }, 2000);
       },
       error: (err) => {
@@ -39,5 +41,8 @@ export class CreateCategoryComponent {
       }
     });
   }
-}
 
+  navigateToCategories(): void {
+    this.router.navigate(['/category']);
+  }
+}
