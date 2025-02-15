@@ -10,21 +10,26 @@
     <a routerLink="/signup" class="menu-item">Sign Up</a>
   </ng-container>
 
-  <!-- Show manager-specific navigation -->
-  <ng-container *ngIf="isManager()">
-    <a routerLink="/book/unavailable" class="menu-item">Unavailable Books</a>
-    <a routerLink="/book/create" class="menu-item">Create New Book</a>
-    <a routerLink="/category/create" class="menu-item">Create New Category</a>
-  </ng-container>
-
   <!-- Show client-specific navigation -->
   <ng-container *ngIf="isClient()">
     <a routerLink="/book" class="menu-item">All Books</a>
   </ng-container>
 
   <!-- Show categories (Available to Everyone) -->
-  <a routerLink="/category" class="menu-item">Categories</a>
   <a routerLink="/book/available" class="menu-item">Books Available</a>
+
+  <!-- Show manager-specific navigation -->
+  <ng-container *ngIf="isManager()">
+    <a routerLink="/book/unavailable" class="menu-item">Unavailable Books</a>
+    <a routerLink="/book/create" class="menu-item">Create New Book</a>
+  </ng-container>
+
+  <!-- Show categories (Available to Everyone) -->
+  <a routerLink="/category" class="menu-item">Categories</a>
+
+  <ng-container *ngIf="isManager()">
+    <a routerLink="/category/create" class="menu-item">Create New Category</a>
+  </ng-container>
 
   <!-- Interactive Logout Button -->
   <button *ngIf="isLoggedIn()" (click)="confirmLogout()" class="menu-item logout">Logout</button>
