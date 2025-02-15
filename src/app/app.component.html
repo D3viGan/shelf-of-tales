@@ -1,6 +1,14 @@
-<nav>
-  <button class="btn" routerLink="/signin">Log In</button>
-  <button class="btn" routerLink="/signup">Create User</button>
+<nav class="nav-bar">
+  <!-- Show login/signup only if the user is NOT logged in -->
+  <button *ngIf="!isLoggedIn()" class="btn" routerLink="/signin">Log In</button>
+  <button *ngIf="!isLoggedIn()" class="btn" routerLink="/signup">Create User</button>
+
+  <!-- Show navigation options based on user roles -->
+  <button *ngIf="isManager()" class="btn" routerLink="/manage-books">Manage Books</button>
+  <button *ngIf="isClient()" class="btn" routerLink="/browse-books">Browse Books</button>
+
+  <!-- Show logout button only when the user is logged in -->
+  <button *ngIf="isLoggedIn()" class="btn btn-logout" (click)="logout()">Logout</button>
 </nav>
 
 <hr>
