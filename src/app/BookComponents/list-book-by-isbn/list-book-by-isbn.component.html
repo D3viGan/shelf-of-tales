@@ -12,7 +12,6 @@
         <img [src]="book.cover" alt="Book cover" class="book-cover">
       </div>
 
-      <!-- Action Buttons -->
       <div class="book-actions">
         <button *ngIf="isManager()" (click)="updateBook()">Update Book</button>
         <button *ngIf="isManager()" (click)="removeBook()">Remove Book</button>
@@ -21,6 +20,11 @@
         </button>
       </div>
     </div>
+  </div>
+
+  <div class="book-actions">
+    <button *ngIf="isClient()" (click)="postReview()">Post a Review</button>
+    <button *ngIf="isClient()" (click)="getReviewes()">Reviews</button>
   </div>
 
   <div *ngIf="!book && isbn">

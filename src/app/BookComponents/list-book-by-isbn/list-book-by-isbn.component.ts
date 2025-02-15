@@ -43,6 +43,10 @@ export class ListBookByISBNComponent implements OnInit {
     return this.userRole === 'manager';
   }
 
+  isClient(): boolean {
+    return this.userRole === 'client';
+  }
+
   updateBook() {
     this.router.navigate([`book/update/${this.isbn}`]);
   }
@@ -51,7 +55,7 @@ export class ListBookByISBNComponent implements OnInit {
     if (confirm('Are you sure you want to remove this book?')) {
       this.bookService.deleteBook(this.isbn).subscribe(() => {
         alert('Book removed successfully');
-        this.router.navigate(['/books']); // Redirect after removal
+        this.router.navigate(['/book']); // Redirect after removal
       });
     }
   }
@@ -61,5 +65,13 @@ export class ListBookByISBNComponent implements OnInit {
     this.bookService.updateBookAvailability(this.isbn, this.book).subscribe(() => {
       alert(`Book availability changed to: ${this.book.available ? 'Available' : 'Unavailable'}`);
     });
+  }
+
+  getReviewes() {
+    this.router.navigate([`review/${this.isbn}`]);
+  }
+
+  postReview() {
+    this.router.navigate([`review/${this.isbn}/create`]);
   }
 }
