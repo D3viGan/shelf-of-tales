@@ -1,7 +1,7 @@
 .side-menu {
-    position: fixed;
+    position: left;
     top: 0;
-    left: 0;
+    right: 0;
     width: 200px;
     height: 100vh;
     background: rgba(127, 167, 190, 0.50);
@@ -28,7 +28,7 @@
     padding: 12px;
     font-size: 1rem;
     text-decoration: none;
-    color: rgb(32, 54, 75);
+    color: rgb(0, 0, 0);
     border-radius: 4px;
     transition: background 0.3s ease, transform 0.1s ease-in-out;
     text-align: center;
@@ -59,11 +59,19 @@
 }
 
 .main-content {
-    margin-left: 220px;
+    margin-right: 0;
+    margin-left: 350px;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
     gap: 20px;
+}
+
+.menu-item.logout {
+    background: rgba(37, 52, 66, 0.55);
+    font-weight: bold;
+    transition: background 0.2s ease, transform 0.1s ease-in-out;
+    margin-top: 500px;
 }
