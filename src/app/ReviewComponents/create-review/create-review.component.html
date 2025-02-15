@@ -1,11 +1,9 @@
 <div class="container">
     <h2>Submit Review for Book (ISBN: {{ isbn }})</h2>
   
-    <!-- Success or error messages -->
     <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
     <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
   
-    <!-- Review Form -->
     <form (ngSubmit)="submitReview()">
       <div class="form-group">
         <label for="reviewText">Your Review:</label>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PostReview } from '../Models/PostReview';
+import { PostReview } from '../Models/postReview';
 import { GetReview } from '../Models/getReview';
 
 @Injectable({

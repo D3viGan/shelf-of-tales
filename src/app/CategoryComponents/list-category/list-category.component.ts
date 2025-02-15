@@ -21,12 +21,10 @@ export class ListCategoryComponent implements OnInit {
   constructor(private authService: AuthService, private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    // Get user role from AuthService
     this.authService.user.subscribe(user => {
       this.userRole = user?.role || null;
     });
 
-    // Fetch categories
     this.loadCategories();
   }
 

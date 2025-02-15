@@ -1,13 +1,10 @@
 <div class="container">
     <h2>Reviews for Book (ISBN: {{ isbn }})</h2>
   
-    <!-- Show error message if fetching fails -->
     <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
   
-    <!-- Show loading message if no reviews are loaded yet -->
     <div *ngIf="!reviews.length && !errorMessage" class="loading">Loading reviews...</div>
   
-    <!-- Display reviews -->
     <div *ngIf="reviews.length > 0">
       <ul class="review-list">
         <li *ngFor="let review of reviews" class="review-item">
@@ -18,7 +15,6 @@
       </ul>
     </div>
   
-    <!-- Message when no reviews are found -->
     <p *ngIf="!errorMessage && reviews.length === 0">No reviews available for this book.</p>
   </div>
   

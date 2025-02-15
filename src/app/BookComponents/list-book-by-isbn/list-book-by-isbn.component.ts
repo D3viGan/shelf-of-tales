@@ -55,7 +55,7 @@ export class ListBookByISBNComponent implements OnInit {
     if (confirm('Are you sure you want to remove this book?')) {
       this.bookService.deleteBook(this.isbn).subscribe(() => {
         alert('Book removed successfully');
-        this.router.navigate(['/book']); // Redirect after removal
+        this.router.navigate(['/book']);
       });
     }
   }

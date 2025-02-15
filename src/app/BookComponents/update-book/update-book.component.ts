@@ -31,7 +31,7 @@ export class UpdateBookComponent implements OnInit {
     // Create the form without the category field
     this.bookForm = this.fb.group({
       title: ['', Validators.required],
-      author: ['', Validators.required], // Multiple authors separated by commas
+      author: ['', Validators.required],
       price: [0, [Validators.required, Validators.min(0)]],
       cover: ['', Validators.required],
       category: ['', Validators.required], // Category field is present but disabled
@@ -62,30 +62,27 @@ export class UpdateBookComponent implements OnInit {
       return;
     }
 
-    // Set isSubmitting to true to indicate the form is being submitted
     this.isSubmitting = true;
 
-    // Build the book object for the server
     const book = {
       isbn: this.isbn,
       title: this.bookForm.value.title,
-      author: this.bookForm.value.author.split(',').map((a: string) => a.trim()), // Convert to array
+      author: this.bookForm.value.author.split(',').map((a: string) => a.trim()),
       cover: this.bookForm.value.cover,
       price: this.bookForm.value.price
     };
 
-    console.log('Data being sent for update:', book); // Log for verification
+    console.log('Data being sent for update:', book);
 
-    // Send the update request
     this.bookService.updateBook(this.isbn, book).subscribe({
       next: () => {
         this.message = 'Book updated successfully!';
-        this.isSubmitting = false; // Reset the submission flag
+        this.isSubmitting = false;
       },
       error: (err) => {
         console.error('Error updating book:', err);
         this.message = 'Error updating the book. Please check the data and try again.';
-        this.isSubmitting = false; // Reset the submission flag
+        this.isSubmitting = false;
       }
     });
   }

@@ -14,6 +14,6 @@ export class UserService {
 
   // Create new user
   createUser(newUser: User): Observable<any> {
-    return this.myWebApiClient.post<any>(`${this.theEndPoint}/signup`, newUser); // POST Request to create a user
+    return this.myWebApiClient.post<any>(`${this.theEndPoint}/signup`, newUser);
   }
 }

@@ -1,7 +1,6 @@
 <div class="update-book-container">
   <h2>Update Book Information</h2>
 
-  <!-- Display error or success messages -->
   <div *ngIf="message" class="alert" [ngClass]="{'alert-success': message.includes('sucesso'), 'alert-error': message.includes('Erro')}">
     {{ message }}
   </div>

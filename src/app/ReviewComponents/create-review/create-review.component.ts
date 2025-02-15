@@ -24,7 +24,6 @@ export class CreateReviewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Extract the ISBN from the URL when the component initializes
     this.isbn = this.route.snapshot.paramMap.get('isbn') || '';
   }
 
@@ -46,7 +45,7 @@ export class CreateReviewComponent implements OnInit {
         this.successMessage = 'Review submitted successfully!';
         this.errorMessage = null;
         setTimeout(() => {
-          location.reload(); // Refresh reviews after submission
+          location.reload();
         }, 2000);
       },
       error: (err) => {
