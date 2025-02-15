@@ -120,3 +120,26 @@ input[type="password"]:focus {
         padding: 10px;
     }
 }
+
+/* Sign-Up Link Section */
+.signin-link {
+    margin-top: 15px;
+    font-size: 1rem;
+    text-align: center;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Link Styling */
+.signin-link a {
+    color: #007bff; /* Standard blue link color */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+/* Hover Effect */
+.signin-link a:hover {
+    text-decoration: underline;
+    color: #0056b3; /* Darker blue on hover */
+}

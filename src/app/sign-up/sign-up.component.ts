@@ -3,6 +3,7 @@ import { User } from '../Models/user';
 import { UserService } from '../Services/user.service';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -20,14 +21,16 @@ export class SignUpComponent {
 
   message: string = "";
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   signUp() {
     this.userService.createUser(this.newUser).subscribe({
       next: (response) => {
         console.log('User created successfully:', response);
         alert('Sign up successful! Welcome to our platform.');
-        this.resetNewUser();
+        setTimeout(() => {
+          this.router.navigate(['/signin']);
+        }, 2000);
       },
       error: (error) => {
         console.error('Error during sign up:', error);
