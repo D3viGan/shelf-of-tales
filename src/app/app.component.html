@@ -3,7 +3,7 @@
   <span *ngIf="isLoggedIn()" class="user-role">{{ userSession?.role | titlecase }}</span>
 
   <!-- Show login/signup only if the user is NOT logged in -->
-  <button *ngIf="!isLoggedIn()" class="btn" routerLink="/signin">Log In</button>
+  <button *ngIf="!isLoggedIn()" class="btn" routerLink="/signin">Sign In</button>
   <button *ngIf="!isLoggedIn()" class="btn" routerLink="/signup">Sign Up</button>
 
   <!-- Show manager-specific navigation -->
