@@ -13,20 +13,27 @@ import { CreateCategoryComponent } from "./CategoryComponents/create-category/cr
 import { ListReviewComponent } from "./ReviewComponents/list-review/list-review.component";
 import { CreateReviewComponent } from "./ReviewComponents/create-review/create-review.component";
 import { ListBookByISBNComponent } from "./BookComponents/list-book-by-isbn/list-book-by-isbn.component";
+import { RoleGuard } from "./guards/role.guard";
 
 export const routes: Routes = [
     { path: 'signup', component: SignUpComponent },
     { path: 'signin', component: SignInComponent },
-    { path: 'book', component: ListBooksComponent },
+
+    // Open Routes for Everyone
     { path: 'book/available', component: ListAvailableBooksComponent },
-    { path: 'book/unavailable', component: ListUnavailableBooksComponent },
-    { path: 'book/:isbn/availability', component: UpdateBookAvailabilityComponent },
-    { path: 'book/create', component: CreateBookComponent },
-    { path: 'book/delete', component: DeleteBookComponent },
-    { path: 'book/:isbn', component: ListBookByISBNComponent },
-    { path: 'book/update/:isbn', component: UpdateBookComponent },
     { path: 'category', component: ListCategoryComponent },
-    { path: 'category/create', component: CreateCategoryComponent },
-    { path: 'review/:isbn', component: ListReviewComponent},
-    { path: 'review/:isbn/create', component: CreateReviewComponent},
+
+    // Routes for Managers Only
+    { path: 'book/unavailable', component: ListUnavailableBooksComponent, canActivate: [RoleGuard], data: { role: 'manager' } },
+    { path: 'book/:isbn/availability', component: UpdateBookAvailabilityComponent, canActivate: [RoleGuard], data: { role: 'manager' } },
+    { path: 'book/create', component: CreateBookComponent, canActivate: [RoleGuard], data: { role: 'manager' } },
+    { path: 'book/delete', component: DeleteBookComponent, canActivate: [RoleGuard], data: { role: 'manager' } },
+    { path: 'book/update/:isbn', component: UpdateBookComponent, canActivate: [RoleGuard], data: { role: 'manager' } },
+    { path: 'category/create', component: CreateCategoryComponent, canActivate: [RoleGuard], data: { role: 'manager' } },
+
+    // Routes for Authenticated Clients (Client & Manager)
+    { path: 'book', component: ListBooksComponent, canActivate: [RoleGuard], data: { role: 'client' } },
+    { path: 'book/:isbn', component: ListBookByISBNComponent, canActivate: [RoleGuard], data: { role: 'client' } },
+    { path: 'review/:isbn', component: ListReviewComponent, canActivate: [RoleGuard], data: { role: 'client' } },
+    { path: 'review/:isbn/create', component: CreateReviewComponent, canActivate: [RoleGuard], data: { role: 'client' } },
 ];
